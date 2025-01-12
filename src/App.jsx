@@ -78,7 +78,7 @@ function App() {
   const handleLogin = async (username, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/token",
+        `${process.env.REACT_APP_API_URL}/auth/token`,
         {
           username,
           password,
@@ -100,7 +100,7 @@ function App() {
 
   const handleRegister = async (username, password, email, full_name) => {
     try {
-      await axios.post("http://localhost:8000/auth/register", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
         username,
         password,
         email,
@@ -109,6 +109,27 @@ function App() {
       alert("Registration successful. Please log in.");
     } catch (error) {
       console.error("Error registering:", error);
+    }
+  };
+
+  const uploadFile = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/upload`,  // Replace with your actual API endpoint
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log('File uploaded successfully:', response.data);
+    } catch (error) {
+      console.error('Error uploading file:', error);
     }
   };
 
