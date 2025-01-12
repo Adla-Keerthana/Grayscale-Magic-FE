@@ -78,7 +78,7 @@ function App() {
   const handleLogin = async (username, password) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/token`,
+        "https://grayscale-magic-be.onrender.com/auth/token", // Local backend URL
         {
           username,
           password,
@@ -100,7 +100,7 @@ function App() {
 
   const handleRegister = async (username, password, email, full_name) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
+      await axios.post("https://grayscale-magic-be.onrender.com/auth/register", { // Local backend URL
         username,
         password,
         email,
@@ -118,7 +118,7 @@ function App() {
       formData.append('file', file);
 
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/upload`,  // Replace with your actual API endpoint
+        "https://grayscale-magic-be.onrender.com/upload",  // Local backend URL
         formData,
         {
           headers: {
