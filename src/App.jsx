@@ -78,7 +78,7 @@ function App() {
   const handleLogin = async (username, password) => {
     try {
       const response = await axios.post(
-        "https://grayscale-magic-be.onrender.com/auth/token", // Local backend URL
+        "https://grayscale-magic-be.onrender.com/login", // Local backend URL
         {
           username,
           password,
